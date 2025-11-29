@@ -1,0 +1,182 @@
+[
+  {
+    "name": "sites",
+    "description": "List all available IoT sites",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "Get all sites"
+    ]
+  },
+  {
+    "name": "assets",
+    "description": "List assets at a specific site",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string",
+          "description": "Name of the site"
+        }
+      },
+      "required": [
+        "site_name"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "List assets at MAIN site"
+    ]
+  },
+  {
+    "name": "sensors",
+    "description": "List sensors for a specific asset at a site",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string",
+          "description": "Name of the site"
+        },
+        "assetnum": {
+          "type": "string",
+          "description": "Asset identifier"
+        }
+      },
+      "required": [
+        "site_name",
+        "assetnum"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "Get sensors for Chiller 6 at MAIN"
+    ]
+  },
+  {
+    "name": "history",
+    "description": "Retrieve historical sensor data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string",
+          "description": "Name of the site"
+        },
+        "assetnum": {
+          "type": "string",
+          "description": "Asset identifier"
+        },
+        "sensor_name": {
+          "type": "string",
+          "description": "Name of the sensor"
+        },
+        "start": {
+          "type": "string",
+          "description": "Start timestamp (ISO format)"
+        },
+        "final": {
+          "type": "string",
+          "description": "End timestamp (ISO format)"
+        }
+      },
+      "required": [
+        "site_name",
+        "assetnum",
+        "sensor_name",
+        "start",
+        "final"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "Get Chiller 6 temperature history from June 2020"
+    ]
+  },
+  {
+    "name": "jsonreader",
+    "description": "Read and parse JSON files",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "file_name": {
+          "type": "string",
+          "description": "Name of the JSON file to read"
+        }
+      },
+      "required": [
+        "file_name"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "Read data from file.json"
+    ]
+  },
+  {
+    "name": "jsonfilemerge",
+    "description": "Merge two JSON files into one",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "file_name_1": {
+          "type": "string",
+          "description": "First JSON file"
+        },
+        "file_name_2": {
+          "type": "string",
+          "description": "Second JSON file"
+        }
+      },
+      "required": [
+        "file_name_1",
+        "file_name_2"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "Merge file1.json and file2.json"
+    ]
+  },
+  {
+    "name": "currenttime",
+    "description": "Get the current time",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": [
+      "What is the current time?"
+    ]
+  },
+  {
+    "name": "Finish",
+    "description": "Finish the task and return the final answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "argument": {
+          "type": "string",
+          "description": "Final answer to return"
+        }
+      },
+      "required": [
+        "argument"
+      ]
+    },
+    "Agent": "IoTAgent",
+    "Agent_Description": "IoT data agent",
+    "Sample_Examples": []
+  }
+]

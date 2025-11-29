@@ -1,0 +1,38 @@
+# Generated output files
+complexbench_iot_records.json
+test_output.json
+test_3_tasks.json
+
+# Log files
+*.log
+generation_log.txt
+generation_output.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment files
+.env
+.venv
+venv/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# API keys (extra safety)
+*api_key*
+*secret*
+

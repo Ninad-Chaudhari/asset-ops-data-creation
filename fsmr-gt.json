@@ -1,0 +1,1186 @@
+[
+    {
+        "chiller_failure_list": "['Compressor Overheating: Failed due to Normal wear, overheating', 'Heat Exchangers: Fans: Degraded motor or worn bearing due to Normal use', 'Evaporator Water side fouling', 'Condenser Water side fouling', 'Condenser Improper water side flow rate', 'Purge Unit Excessive purge', 'Refrigerant Operated Control Valve Failed spring']",
+        "wind_turbine_failure_list": "['Blade Failure', 'Gearbox Failure', 'Generator Failure', 'Bearing Failure', 'Electrical System Failure', 'Control System Failure', 'Foundation Failure', 'Tower Failure', 'Hub Failure', 'Pitch System Failure ', 'Yaw System Failure ', 'Hydraulic System Failure']",
+        "wind_turbine_sensor_list": "['Temperature', 'Pressure', 'Flow Meter', 'Vibration', 'Power Meter ', 'Humidity ', 'Current Transformer ', 'Thermocouple']",
+        "chiller_6_sensor_list": "['Chiller 6 Chiller % Loaded', 'Chiller 6 Chiller Efficiency', 'Chiller 6 Condenser Water Flow', 'Chiller 6 Condenser Water Return To Tower Temperature', 'Chiller 6 Liquid Refrigerant Evaporator Temperature', 'Chiller 6 Power Input', 'Chiller 6 Return Temperature', 'Chiller 6 Schedule', 'Chiller 6 Supply Temperature', 'Chiller 6 Tonnage']"
+    },
+    {
+        "id": 101,
+        "type": "FMSR",
+        "characteristic_form": "The failure modes for Chiller are: <chiller_failure_list>",
+        "deterministic": true,
+        "text": "List all failure modes of asset Chiller.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of asset Chiller"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller",
+                "outputs": "The failure modes of asset Chiller: <chiller_failure_list>"
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "type": "FMSR",
+        "characteristic_form": "The failure modes of asset Chiller 6 are: <chiller_failure_list>",
+        "deterministic": true,
+        "text": "List all failure modes of asset Chiller 6 at the MAIN site.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of asset Chiller 6 at the MAIN site."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "type": "FMSR",
+        "characteristic_form": "the answer should contain a list of meaningful failure modes for asset wind turbine.",
+        "deterministic": false,
+        "text": "List all failure modes of asset Wind Turbine.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of asset Wind Turbine."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Wind Turbine",
+                "outputs": "The failure modes of asset Wind Turbine: <wind_turbine_failure_list>"
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 104,
+        "type": "FMSR",
+        "deterministic": true,
+        "characteristic_form": "The installed sensors of asset Chiller 6 are: <chiller_6_sensor_list>.",
+        "text": "List all installed sensors of asset Chiller 6 at the MAIN site.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain a list of sensor names for asset wind turbine.",
+        "text": "Provide some sensors of asset Wind Turbine.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Provide some sensors of asset Wind Turbine."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Wind Turbine",
+                "outputs": "<wind_turbine_sensor_list>"
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "List all failure modes of Chiller 6 at the MAIN site that can be detected by Chiller 6 Supply Temperature.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by Chiller 6 Supply Temperature."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, Chiller 6 Supply Temperature",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "List all failure modes of Chiller 6 at the MAIN site that can be detected by temperature sensors.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by temperature sensors."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, ['Chiller 6 Condenser Water Return To Tower Temperature', 'Chiller 6 Liquid Refrigerant Evaporator Temperature', 'Chiller 6 Return Temperature', 'Chiller 6 Supply Temperature']",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_available_sensor_information"
+            },
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 108,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "List all failure modes of Chiller 6 at the MAIN site that can be detected by temperature sensors and power input sensors.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by temperature sensors and power input sensors."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, ['Chiller 6 Condenser Water Return To Tower Temperature', 'Chiller 6 Liquid Refrigerant Evaporator Temperature', 'Chiller 6 Return Temperature', 'Chiller 6 Supply Temperature', 'Chiller 6 Power Input']",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_available_sensor_information"
+            },
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 109,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "Get failure modes for Chiller 6 at the MAIN site and only include in final response those that can be monitored using the available sensors.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by the available sensors."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_available_sensor_information"
+            },
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "Are there any failure modes of Chiller 6 at the MAIN site that can be predicted by monitoring the vibration sensor data?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by the vibration sensors."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, Chiller 6 Vibration",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 111,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "List all sensors of Chiller 6 at the MAIN site that are potentially relevant to Compressor Overheating.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List the sensors of Chiller 6 at the MAIN site that are potentially relevant to Compressor Overheating."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, Compressor Overheating, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 112,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one of more sensors of Chiller 6. The sensors of Chiller 6 need to be from the list <chiller_6_sensor_list>. ",
+        "text": " If compressor overheating occurs for Chiller 6 at the MAIN site, which sensor should be prioritized for monitoring this specific failure?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List the sensors of Chiller 6 at the MAIN site that are potentially relevant to Compressor Overheating."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, Compressor Overheating, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 113,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one of more sensors of Chiller 6. The sensors of Chiller 6 need to be from the list <chiller_6_sensor_list> ",
+        "text": " If Evaporator Water side fouling occurs for Chiller 6 at the MAIN site, which sensor is most relevant for monitoring this specific failure?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List the sensors of Chiller 6 at the MAIN site that are potentially relevant to Evaporator Water side fouling."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, Evaporator Water side fouling, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 114,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "What are the failure modes of Chiller 6 at the MAIN site that can be identified by analyzing the data from the available sensors?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of Chiller 6 at the MAIN site"
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Only list the failure modes of Chiller 6 at the MAIN site that can be detected by the available sensors."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_available_sensor_information"
+            },
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 115,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should be a plan by the maintenance experts to early detect the failure of purge unit of chiller 6. the answer should include the sensors that can be used to detect the failure of purge unit of chiller 6",
+        "text": "Purge unit of chiller 6 at the MAIN site have possibility to excess purge, what is the plan by the maintenance experts to early detect the failure?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "what is the plan by the maintenance experts to early detect the Purge Unit Excessive purge failure for Chiller 6?"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, 'Purge Unit Excessive purge', <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 116,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should be a machine learning recipe for detecting overheating failure for Chiller 6. the answer should include the sensors that can be used to detect the failure of overheating for Chiller 6",
+        "text": "Generate a machine learning recipe for detecting overheating failure for Chiller 6 at the MAIN site. Result should include feature sensors and target sensor.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "Generate a machine learning recipe for detecting overheating failure for Chiller 6 at the MAIN site."
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, overheating, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 117,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should describe the temporal behavior of the power input of Chiller 6",
+        "text": "When compressor motor of Chiller 6 at the MAIN site fails, what is the temporal behavior of the power input?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "When compressor motor of Chiller 6 at the MAIN site fails, what is the temporal behavior of the power input?"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, compressor motor failure, Chiller 6 Power Input",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 118,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "When power input of Chiller 6 at the MAIN site drops, what is the potential failure that causes it?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "When power input of Chiller 6 at the MAIN site drops, what is the potential failure that causes it?"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, Chiller 6 Power Input",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 119,
+        "type": "FMSR",
+        "deterministic": false,
+        "characteristic_form": "the answer should contain one or more failure modes of Chiller 6. The failure modes of Chiller 6 need to be from the list <chiller_failure_list>",
+        "text": "When the Liquid Refrigerant Evaporator Temperature of Chiller 6 at the MAIN site drops, what failure is most likely to occur?",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all failure modes of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "When the Liquid Refrigerant Evaporator Temperature of Chiller 6 at the MAIN site drops, what failure is most likely to occur?"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_failure_modes",
+                "action": "Get Failure Modes",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "The failure modes of asset Chiller 6: <chiller_failure_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, <chiller_failure_list>, Liquid Refrigerant Evaporator Temperature of Chiller 6",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_failure_modes",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    },
+    {
+        "id": 120,
+        "type": "FMSR",
+        "deterministic": false,
+        "text": "I want to build an anomaly model for identifying a chiller trip failure for MAIN chiller 6. Provide me a list of sensors that I should use, along with the temporal behavior,",
+        "characteristic_form": "the answer should contain how to build an anomaly model for identifying a chiller trip failure for MAIN chiller 6. The answer should include sensors that I should use, along with the temporal behavior.",
+        "planning_steps": [
+            {
+                "agent": "FMSRAgent",
+                "instruction": "List all installed sensors of asset Chiller 6 at the MAIN site."
+            },
+            {
+                "agent": "FMSRAgent",
+                "instruction": "I want to build an anomaly model for identifying a chiller trip failure for MAIN chiller 6. Provide me a list of sensors that I should use, along with the temporal behavior"
+            }
+        ],
+        "execution_steps": [
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": true
+                },
+                "name": "get_available_sensor_information",
+                "action": "Get Available Sensor Information",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6",
+                "outputs": "<chiller_6_sensor_list>"
+            },
+            {
+                "deterministic": {
+                    "name": false,
+                    "action": true,
+                    "arguments": true,
+                    "outputs": false
+                },
+                "name": "get_failure_mode_and_sensor_relevancy_mapping",
+                "action": "Get Failure Mode and Sensor Relevancy Mapping",
+                "agent": "FMSRAgent",
+                "arguments": "Chiller 6, chiller trip failure, <chiller_6_sensor_list>",
+                "outputs": "The following is the full relevancy mapping information for asset Chiller 6. Please find your answers accordingly."
+            },
+            {
+                "name": "finish",
+                "action": "Finish",
+                "arguments": "",
+                "outputs": ""
+            }
+        ],
+        "execution_links": [
+            {
+                "source": "get_available_sensor_information",
+                "target": "get_failure_mode_and_sensor_relevancy_mapping"
+            },
+            {
+                "source": "get_failure_mode_and_sensor_relevancy_mapping",
+                "target": "finish"
+            }
+        ]
+    }
+]
