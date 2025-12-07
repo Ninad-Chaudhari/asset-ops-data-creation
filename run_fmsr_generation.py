@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-Run ComplexBench generation with INCREMENTAL file updates.
-This allows you to monitor progress in real-time.
+Generate ComplexBench dataset for FMSR tasks with incremental updates.
 """
 
 import json
 import sys
+import os
 from pathlib import Path
-from typing import Any, Dict
+
+# Set API key (should be set as environment variable before running)
+# export OPENAI_API_KEY="your-key-here"
+if "OPENAI_API_KEY" not in os.environ:
+    raise ValueError("OPENAI_API_KEY environment variable must be set")
 
 # Import from main script
 from extract_complex_bench import (
@@ -18,32 +22,32 @@ from extract_complex_bench import (
 )
 
 def main():
-    print("🚀 Starting ComplexBench Dataset Generation")
+    print("🚀 Starting ComplexBench Dataset Generation for FMSR")
     print("=" * 60)
     
     # Load data
     print("\n📂 Loading data files...")
-    gt_data = load_json("iot_gt.json")
-    tool_schema_list = load_json("agent_tool_schemas.json")
+    gt_data = load_json("fsmr-gt.json")
+    tool_schema_list = load_json("fmsr_tool_schemas.json")
     tool_schemas_by_name = index_tool_schemas(tool_schema_list)
     
-    # Filter tasks with "text" field
-    tasks = [t for t in gt_data if isinstance(t, dict) and "text" in t]
+    # Filter tasks (skip the metadata record)
+    tasks = [t for t in gt_data if isinstance(t, dict) and "text" in t and "id" in t]
     total = len(tasks)
-    print(f"   Found {total} tasks to process")
+    print(f"   Found {total} FMSR tasks to process (IDs: {tasks[0]['id']}-{tasks[-1]['id']})")
     
-    output_path = Path("complexbench_iot_records.json")
+    output_path = Path("complexbench_fmsr_records.json")
     records = []
     failed = []
     
     print("\n🤖 Generating evaluation questions with LLM...")
-    print("   (This will take approximately 30-60 minutes)")
-    print("   File will update after EACH task (you can monitor progress!)")
+    print("   (This will take approximately 2-3 minutes for 20 tasks)")
+    print("   File will update after EACH task!")
     print()
     
     for i, task in enumerate(tasks, 1):
         task_id = task.get("id", "unknown")
-        task_text = task.get("text", "")[:50] + "..."
+        task_text = task.get("text", "")[:60] + "..."
         
         # Progress bar
         percent = (i-1) / total * 100
@@ -66,52 +70,28 @@ def main():
             if any(v is None for v in annotations.values()):
                 failed.append(task_id)
             
-            # ✨ INCREMENTAL SAVE - Update file after each task!
+            # ✨ INCREMENTAL SAVE
             with output_path.open("w", encoding="utf-8") as f:
                 json.dump(records, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:
             print(f"\n   ⚠️  Error processing task {task_id}: {e}")
             failed.append(task_id)
-            # Create a record anyway with None annotations
-            record = {
-                "id": task.get("uuid") or task.get("id"),
-                "original_task": {
-                    "text": task.get("text", ""),
-                    "characteristic_form": task.get("characteristic_form", ""),
-                    "category": task.get("category", ""),
-                    "composition_hint": "unknown",
-                },
-                "complexbench_metadata": {},
-                "complexbench_annotations": {
-                    "constraint_and_composition": None,
-                    "helpfulness_questions": None,
-                    "lexical_questions": None,
-                    "factuality_questions": None,
-                    "chain_tool_questions": None,
-                    "argument_questions": None,
-                    "consistency_questions": None,
-                },
-            }
-            records.append(record)
-            
-            # Save even failed records
-            with output_path.open("w", encoding="utf-8") as f:
-                json.dump(records, f, indent=2, ensure_ascii=False)
+            continue
     
     # Final progress bar
     print(f"\r   [{'█' * bar_length}] 100.0% | Task {total}/{total} - Complete!    ")
     
     # Summary
     print("\n" + "=" * 60)
-    print("✅ Generation Complete!")
+    print("✅ FMSR Generation Complete!")
     print(f"   Total tasks processed: {len(records)}")
     print(f"   Successfully generated: {len(records) - len(failed)}")
     if failed:
         print(f"   Failed or partial: {len(failed)}")
-        print(f"   Failed task IDs: {failed[:10]}{'...' if len(failed) > 10 else ''}")
+        print(f"   Failed task IDs: {failed}")
     print(f"   Output file: {output_path}")
-    print(f"   File size: {output_path.stat().st_size / (1024*1024):.2f} MB")
+    print(f"   File size: {output_path.stat().st_size / 1024:.2f} KB")
     print("=" * 60)
 
 if __name__ == "__main__":
@@ -119,7 +99,7 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         print("\n\n⚠️  Generation interrupted by user")
-        print("   Partial results have been saved to complexbench_iot_records.json")
+        print("   Partial results have been saved to complexbench_fmsr_records.json")
         sys.exit(1)
     except Exception as e:
         print(f"\n\n❌ Generation failed: {e}")

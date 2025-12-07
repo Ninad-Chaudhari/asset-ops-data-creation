@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Get Failure Modes",
+    "description": "Get all failure modes for a specific asset type",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "asset_name": {
+          "type": "string",
+          "description": "Name of the asset (e.g., 'Chiller', 'Chiller 6', 'Wind Turbine')"
+        }
+      },
+      "required": ["asset_name"]
+    },
+    "Agent": "FMSRAgent",
+    "Agent_Description": "Failure Mode and Sensor Relevancy Expert for Industrial Asset",
+    "Sample_Examples": [
+      "Get failure modes for Chiller 6",
+      "List all failure modes for Wind Turbine"
+    ]
+  },
+  {
+    "name": "Get Failure Mode And Sensor Mapping",
+    "description": "Get the mapping between failure modes and sensors that can detect them",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "asset_name": {
+          "type": "string",
+          "description": "Name of the asset"
+        },
+        "sensor_name": {
+          "type": "string",
+          "description": "Name of the sensor (optional)"
+        },
+        "failure_mode": {
+          "type": "string",
+          "description": "Specific failure mode (optional)"
+        }
+      },
+      "required": ["asset_name"]
+    },
+    "Agent": "FMSRAgent",
+    "Agent_Description": "Failure Mode and Sensor Relevancy Expert for Industrial Asset",
+    "Sample_Examples": [
+      "Which sensors can detect Compressor Overheating in Chiller 6?",
+      "What failure modes can temperature sensors detect?"
+    ]
+  },
+  {
+    "name": "Get Sensor Metadata",
+    "description": "Get metadata about sensors for a specific asset",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "asset_name": {
+          "type": "string",
+          "description": "Name of the asset"
+        }
+      },
+      "required": ["asset_name"]
+    },
+    "Agent": "FMSRAgent",
+    "Agent_Description": "Failure Mode and Sensor Relevancy Expert for Industrial Asset",
+    "Sample_Examples": [
+      "Get all sensors for Chiller 6",
+      "List sensors for Wind Turbine"
+    ]
+  },
+  {
+    "name": "jsonreader",
+    "description": "Read and parse JSON files",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "file_name": {
+          "type": "string",
+          "description": "Name of the JSON file to read"
+        }
+      },
+      "required": ["file_name"]
+    },
+    "Agent": "FMSRAgent",
+    "Agent_Description": "Failure Mode and Sensor Relevancy Expert for Industrial Asset",
+    "Sample_Examples": [
+      "Read data from file.json"
+    ]
+  },
+  {
+    "name": "Finish",
+    "description": "Finish the task and return the final answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "argument": {
+          "type": "string",
+          "description": "Final answer to return"
+        }
+      },
+      "required": ["argument"]
+    },
+    "Agent": "FMSRAgent",
+    "Agent_Description": "Failure Mode and Sensor Relevancy Expert for Industrial Asset",
+    "Sample_Examples": []
+  }
+]
+
+
